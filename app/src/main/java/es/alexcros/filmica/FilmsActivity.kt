@@ -18,11 +18,17 @@ class FilmsActivity: AppCompatActivity() {
         setContentView(R.layout.activity_films)
 
         val list: RecyclerView = findViewById(R.id.list_films)
+        //val list = findViewById(R.id.list_films)
         list.layoutManager = LinearLayoutManager(this)
+
+
+        val adapter = FilmsAdapter()
+        list.adapter = adapter
+        adapter.setFilms(FilmsRepo.films)
     }
 
     fun showDetails(clickedView: View) {
-        val intentToDetails: Intent = Intent(this, DetailsActivity::class.java)
+        val intentToDetails = Intent(this, DetailsActivity::class.java)
         startActivity(intentToDetails)
     }
 }

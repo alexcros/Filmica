@@ -13,7 +13,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // IMPORTANT, it will run lint checks but won't abort build
+        lintOptions {
+            abortOnError false
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
