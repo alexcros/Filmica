@@ -5,16 +5,16 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 
-class MainActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_details)
 
         val button : Button = findViewById(R.id.button_add)
 
         button.setOnClickListener { view ->
-            Toast.makeText(this@MainActivity, "Added to list", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@DetailsActivity, "Added to list", Toast.LENGTH_LONG).show()
         }
     }
 }
