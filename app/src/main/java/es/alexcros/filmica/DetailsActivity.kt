@@ -16,7 +16,14 @@ class DetailsActivity : AppCompatActivity() {
         val id: String = intent.getStringExtra("id")
         val film = FilmsRepo.findFilmById(id)
 
-        labelTitle.text = film?.title
+        film?.let {
+            with(film) {
+                labelTitle.text = title
+                labelOverView.text = overview
+                labelGenre.text = genre
+                labelRelease.text = release
+            }
+        }
 
         val button : Button = findViewById(R.id.button_add)
 
