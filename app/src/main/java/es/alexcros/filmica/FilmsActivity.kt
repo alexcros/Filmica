@@ -20,7 +20,7 @@ class FilmsActivity: AppCompatActivity() {
 
     val adapter: FilmsAdapter by lazy {
         val instance = FilmsAdapter { Film ->
-            this.showDetails()
+            this.showDetails(Film.id)
         }
 
         instance.setFilms(FilmsRepo.films)
@@ -35,8 +35,9 @@ class FilmsActivity: AppCompatActivity() {
 
     }
 
-    fun showDetails() {
+    fun showDetails(filmId: String) {
         val intentToDetails = Intent(this, DetailsActivity::class.java)
+        intentToDetails.putExtra("id", filmId)
         startActivity(intentToDetails)
     }
 }
