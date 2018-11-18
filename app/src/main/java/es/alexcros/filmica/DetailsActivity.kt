@@ -11,10 +11,14 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
-        val button : Button = findViewById(R.id.button_add)
+//        if (savedInstance == null) {
+//            val detailsFragment = DetailsFragmnent()
+//        }
 
-        button.setOnClickListener { view ->
-            Toast.makeText(this@DetailsActivity, "Added to list", Toast.LENGTH_LONG).show()
-        }
+//        val button : Button = findViewById(R.id.button_add)
+//
+//        button.setOnClickListener { view ->
+//            Toast.makeText(this@DetailsActivity, "Added to list", Toast.LENGTH_LONG).show()
+//        }
     }
 }

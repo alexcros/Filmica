@@ -1,6 +1,7 @@
 package es.alexcros.filmica
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import java.lang.reflect.Array.set
 /**
  * Created by alexandre on 13/11/18.
  */
-class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
+class FilmsAdapter(var itemClickListener: ((Film) -> Unit)? = null) : RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
 
     //val list: MutableList<Film> = mutableListOf()
     val list = mutableListOf<Film>()
@@ -21,8 +22,7 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
 
     override fun onCreateViewHolder(recyclerView: ViewGroup, type: Int): FilmViewHolder {
         // service from os -> xml to view (textview, viewContainer)
-        val itemView = LayoutInflater.from(recyclerView.context).
-                inflate(R.layout.item_film, recyclerView, false)
+        val itemView = LayoutInflater.from(recyclerView.context).inflate(R.layout.item_film, recyclerView, false)
 
         return FilmViewHolder(itemView)
     }
@@ -40,19 +40,21 @@ class FilmsAdapter: RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
 
     inner class FilmViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var film: Film? = null
-        set(value) {
-            field = value
-            itemView.findViewById<TextView>(R.id.label_title).text = value?.title
+            set(value) {
+                field = value
+                itemView.findViewById<TextView>(R.id.label_title).text = value?.title
+            }
+
+        init {
+            this.itemView.setOnClickListener {
+                film?.let {
+                    itemClickListener?.invoke(this.film as Film)
+                }
+
+            }
         }
+
     }
 
-//    inner FilmViewHolder(view: View): RecyclerView.ViewHolder(view) {
-//        var film: Film? = null
-//        set(value) {
-//            field = value
-//
-//            itemView.findViewById<TextView>(R.id.label_title).text = value?.title
-//        }
-//    }
 
 }

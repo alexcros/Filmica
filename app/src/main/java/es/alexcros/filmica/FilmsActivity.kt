@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 
 /**
  * Created by alexandre on 13/11/18.
  */
 class FilmsActivity: AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +22,15 @@ class FilmsActivity: AppCompatActivity() {
         list.layoutManager = LinearLayoutManager(this)
 
 
-        val adapter = FilmsAdapter()
+        val adapter = FilmsAdapter() { film ->
+            this.showDetails()
+        }
+
         list.adapter = adapter
         adapter.setFilms(FilmsRepo.films)
     }
 
-    fun showDetails(clickedView: View) {
+    fun showDetails() {
         val intentToDetails = Intent(this, DetailsActivity::class.java)
         startActivity(intentToDetails)
     }
