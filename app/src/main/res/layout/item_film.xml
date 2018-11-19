@@ -23,17 +23,21 @@
             android:textStyle="bold"
             android:textSize="18sp"
             tools:text="Film"
+            android:layout_marginBottom="8dp"
             />
 
         <TextView
             android:id="@+id/labelOverView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:layout_below="@id/labelTitle"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            tools:text="0.0000000000000"
-            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_votes"
+            android:drawableStart="@drawable/ic_votes"
+            android:drawablePadding="4dp"
+            tools:text="10.0"
             android:maxLength="4"
             />
 
@@ -41,11 +45,14 @@
             android:id="@+id/labelGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/labelTitle"
-            tools:text="Genre GenreGenreGenreGenreGenreGenreGenre"
             android:textColor="@android:color/white"
+            android:layout_below="@id/labelTitle"
             android:layout_toLeftOf="@+id/labelOverView"
             android:layout_toStartOf="@+id/labelOverView"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:drawablePadding="4dp"
+            tools:text="Genre"
             android:maxLines="1"
             />
 
