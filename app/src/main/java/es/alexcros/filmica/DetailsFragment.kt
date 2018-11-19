@@ -32,7 +32,8 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val id : String? = arguments?.getString("id") ?: ""
-        val film = FilmsRepo.findFilmById(id)
+        val film = FilmsRepo.findFilmById("id")
+                //TODO: fix this
 
         film?.let {
             with(film) {
