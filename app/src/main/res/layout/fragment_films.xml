@@ -5,6 +5,6 @@
     android:id="@+id/list_films"
     app:layoutManager="android.support.v7.widget.GridLayoutManager"
     app:spanCount="2"
-    tools:listItem="@layout/item_film"
+    tools:listitem="@layout/item_film"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
