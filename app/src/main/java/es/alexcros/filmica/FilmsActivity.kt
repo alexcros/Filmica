@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity
 /**
  * Created by alexandre on 13/11/18.
  */
-class FilmsActivity: AppCompatActivity() {
+class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +24,13 @@ class FilmsActivity: AppCompatActivity() {
 
     }
 
+    override fun onItemClicked(film: Film) {
+
+    }
+
+    fun showDetails() {
+
+    }
 
 
 

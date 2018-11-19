@@ -1,5 +1,6 @@
 package es.alexcros.filmica
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,7 +13,10 @@ import android.view.ViewGroup
 /**
  * Created by alexandre on 19/11/18.
  */
+
 class FilmsFragment: Fragment() {
+
+    lateinit var listener: OnItemClickListener = null
 
     val list: RecyclerView by lazy {
         val instance = view!!.findViewById<RecyclerView>(R.id.list_films)
@@ -23,13 +27,21 @@ class FilmsFragment: Fragment() {
 
     val adapter: FilmsAdapter by lazy {
         val instance = FilmsAdapter { Film ->
-            this.showDetails(Film.id)
+            this.listener.onItemClicked(film)
         }
 
         instance.setFilms(FilmsRepo.films)
         instance
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        if (context is OnItemClickListener) {
+            listener = context
+        }
+
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_films, container, false)
@@ -40,11 +52,8 @@ class FilmsFragment: Fragment() {
         list.adapter = adapter
     }
 
-    fun showDetails(filmId: String) {
-        val intentToDetails = Intent(this.context, DetailsActivity::class.java)
-        intentToDetails.putExtra("id", filmId)
-        startActivity(intentToDetails)
+    interface OnItemClickListener {
+        fun onItemClicked(film: Film)
     }
-
 
 }
