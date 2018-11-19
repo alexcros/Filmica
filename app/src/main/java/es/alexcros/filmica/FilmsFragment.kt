@@ -15,7 +15,7 @@ import android.view.ViewGroup
 
 class FilmsFragment: Fragment() {
 
-    lateinit var listener: OnItemClickListener = null
+    lateinit var listener: OnItemClickListener
 
     val list: RecyclerView by lazy {
         val instance = view!!.findViewById<RecyclerView>(R.id.list_films)

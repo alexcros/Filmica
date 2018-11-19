@@ -25,10 +25,12 @@ class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
     }
 
     override fun onItemClicked(film: Film) {
+        showDetails(film.id)
 
     }
 
-    fun showDetails() {
+    fun showDetails(id: String) {
+
 
     }
 
