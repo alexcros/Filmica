@@ -1,7 +1,6 @@
 package es.alexcros.filmica
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -26,7 +25,7 @@ class FilmsFragment: Fragment() {
     }
 
     val adapter: FilmsAdapter by lazy {
-        val instance = FilmsAdapter { Film ->
+        val instance = FilmsAdapter { film ->
             this.listener.onItemClicked(film)
         }
 
