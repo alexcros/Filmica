@@ -3,7 +3,6 @@ package es.alexcros.filmica
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,7 @@ class FilmsFragment: Fragment() {
 
     val list: RecyclerView by lazy {
         val instance = view!!.findViewById<RecyclerView>(R.id.list_films)
-        instance.addItemDecoration(ItemOffsetDecoration())
+        instance.addItemDecoration(ItemOffsetDecoration(R.dimen.offset_grid))
 
         instance
     }

@@ -1,12 +1,11 @@
 package es.alexcros.filmica
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import java.lang.reflect.Array.set
+import kotlinx.android.synthetic.main.item_film.view.*
 
 /**
  * Created by alexandre on 13/11/18.
@@ -42,7 +41,14 @@ class FilmsAdapter(var itemClickListener: ((Film) -> Unit)? = null) : RecyclerVi
         var film: Film? = null
             set(value) {
                 field = value
-                itemView.findViewById<TextView>(R.id.label_title).text = value?.title
+
+                value?.let {
+                    with(itemView) {
+                        labelTitle.text = value?.title
+                        labelGenre.text = value?.genre
+                        labelOverView.text = value?.voteRating.toString()
+                    }
+                }
             }
 
         init {
