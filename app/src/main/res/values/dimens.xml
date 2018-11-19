@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="offset_grid">8dp</item>
+    <dimen name="offset_grid">8dp</dimen>
 </resources>
