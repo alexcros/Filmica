@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/label_title"
-    android:gravity="center"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="216dp"
-    android:textStyle="bold"
-    android:textSize="18sp"
-    android:background="@color/colorPrimary"
-    android:textColor="#FFF"
-    tools:text="Film 1">
+    android:layout_height="196dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</TextView>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/labelTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:text="Film"
+            />
+
+        <TextView
+            android:id="@+id/labelOverView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelTitle"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            tools:text="0.0000000000000"
+            android:textColor="@android:color/white"
+            android:maxLength="4"
+            />
+
+        <TextView
+            android:id="@+id/labelGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelTitle"
+            tools:text="Genre GenreGenreGenreGenreGenreGenreGenre"
+            android:textColor="@android:color/white"
+            android:layout_toLeftOf="@+id/labelOverView"
+            android:layout_toStartOf="@+id/labelOverView"
+            android:maxLines="1"
+            />
+
+    </RelativeLayout>
+</FrameLayout>
