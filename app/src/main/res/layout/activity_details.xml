@@ -1,52 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/container_details"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+
     >
 
-    <TextView
-        android:id="@+id/labelTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Small foot"
-        android:textStyle="bold"
-        android:textSize="16sp"/>
 
-    <TextView
 
-        android:id="@+id/labelGenre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:layout_marginTop="8dp"
-        android:text="Comedy | Adventure"
-        android:textSize="66px"/>
-
-    <TextView
-        android:id="@+id/labelOverView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:layout_marginTop="8dp"
-        android:text="Second line"
-        android:textSize="66px"/>
-
-    <TextView
-        android:id="@+id/labelRelease"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="2018-09-20"
-        android:textSize="66px"/>
-
-    <Button
-        android:id="@+id/button_add"
-        android:layout_marginTop="8dp"
-        android:text="@string/label_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</FrameLayout>

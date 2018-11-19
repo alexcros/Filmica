@@ -3,11 +3,13 @@ package es.alexcros.filmica
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_films.*
+import javax.xml.transform.Templates
+
 /**
  * Created by alexandre on 13/11/18.
  */
 class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +21,7 @@ class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
             supportFragmentManager.beginTransaction()
                     .add(R.id.container_list, filmsFragment)
                     .commit()
-
         }
-
     }
 
     override fun onItemClicked(film: Film) {
@@ -30,11 +30,25 @@ class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
     }
 
     fun showDetails(id: String) {
-
+        if (this.containerDetails != null)
+            showDetailsFragment(id)
+        else
+            launchDetailsActivity(id)
 
     }
 
+    private fun launchDetailsActivity(id: String) {
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
+    }
 
+    private fun showDetailsFragment(id: String) {
+        val fragment = DetailsFragment()
 
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.containerDetails, fragment)
+                .commit()
+    }
 
 }
