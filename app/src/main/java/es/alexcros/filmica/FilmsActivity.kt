@@ -15,7 +15,11 @@ class FilmsActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_films)
 
-        list.adapter = adapter
+        val filmsFragment = FilmsFragment()
+
+        supportFragmentManager.beginTransaction()
+                .add(R.id.container_list, filmsFragment)
+                .commit()
 
     }
 
