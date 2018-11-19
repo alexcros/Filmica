@@ -30,12 +30,14 @@ class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
     }
 
     fun showDetails(id: String) {
-        if (this.containerDetails != null)
+        if (isTablet())
             showDetailsFragment(id)
         else
             launchDetailsActivity(id)
 
     }
+
+    private fun isTablet() = this.containerDetails != null
 
     private fun launchDetailsActivity(id: String) {
         val intent = Intent(this, DetailsActivity::class.java)
@@ -44,10 +46,10 @@ class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
     }
 
     private fun showDetailsFragment(id: String) {
-        val fragment = DetailsFragment()
+        val detailsFragment = DetailsFragment.newInstance(id)
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.containerDetails, fragment)
+                .replace(R.id.containerDetails, detailsFragment)
                 .commit()
     }
 

@@ -10,18 +10,11 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
-//        val film = FilmsRepo.findFilmById(id)
-//
-//        intent.putExtra("id", id)
-//        startActivity(intent)
-
         if (savedInstanceState == null) {
             val id = intent.getStringExtra("id")
-            val args = Bundle()
-            args.putString("id", id)
 
-            val detailsFragment = DetailsFragment()
-            detailsFragment.arguments = args
+            val detailsFragment = DetailsFragment.newInstance(id)
+//            detailsFragment.arguments = DetailsFragment.newInstance(id)
 
             supportFragmentManager.beginTransaction()
                     .add(R.id.container_details, detailsFragment)
