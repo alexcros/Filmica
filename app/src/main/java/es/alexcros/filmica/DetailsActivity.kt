@@ -14,7 +14,6 @@ class DetailsActivity : AppCompatActivity() {
             val id = intent.getStringExtra("id")
 
             val detailsFragment = DetailsFragment.newInstance(id)
-//            detailsFragment.arguments = DetailsFragment.newInstance(id)
 
             supportFragmentManager.beginTransaction()
                     .add(R.id.container_details, detailsFragment)

@@ -31,8 +31,8 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val id : String? = arguments?.getString("id") ?: ""
-        val film = FilmsRepo.findFilmById("id")
+        val id : String = arguments?.getString("id") ?: ""
+        val film = FilmsRepo.findFilmById(id)
                 //TODO: fix this
 
         film?.let {

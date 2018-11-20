@@ -4,13 +4,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import kotlinx.android.synthetic.main.item_film.view.*
 
 /**
  * Created by alexandre on 13/11/18.
  */
-class FilmsAdapter(var itemClickListener: ((Film) -> Unit)? = null) : RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
+class FilmsAdapter(var itemClickListener: ((Film) -> Unit)? = null) :
+        RecyclerView.Adapter<FilmsAdapter.FilmViewHolder>() {
 
     //val list: MutableList<Film> = mutableListOf()
     val list = mutableListOf<Film>()
@@ -45,8 +45,8 @@ class FilmsAdapter(var itemClickListener: ((Film) -> Unit)? = null) : RecyclerVi
                 value?.let {
                     with(itemView) {
                         labelTitle.text = value?.title
-                        labelGenre.text = value?.genre
-                        labelOverView.text = value?.voteRating.toString()
+                        titleGenre.text = value?.genre
+                        labelVotes.text = value?.voteRating.toString()
                     }
                 }
             }
