@@ -72,7 +72,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:srcCompat="?attr/colorAccent" />
+            app:srcCompat="@drawable/ic_movieroll" />
 
         <TextView
             android:id="@+id/titleGenre"
