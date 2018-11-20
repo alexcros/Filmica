@@ -13,6 +13,8 @@
         android:paddingBottom="16dp">
 
         <ImageView
+            app:srcCompat="@drawable/placeholder"
+            android:scaleType="centerCrop"
             android:id="@+id/imgPoster"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -22,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="?attr/colorPrimary" />
+             />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline2"
