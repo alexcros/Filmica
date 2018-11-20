@@ -38,7 +38,7 @@ class DetailsFragment : Fragment() {
         film?.let {
             with(film) {
                 labelTitle.text = title
-                labelOverView.text = overview
+                labelOverview.text = overview
                 labelGenre.text = genre
                 labelRelease.text = release
             }
