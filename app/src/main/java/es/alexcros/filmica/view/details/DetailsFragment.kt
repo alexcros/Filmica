@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.squareup.picasso.Picasso
 import es.alexcros.filmica.R
 import es.alexcros.filmica.data.FilmsRepo
 import kotlinx.android.synthetic.main.fragment_details.* // avoid findViewById repeat
-
 /**
  * Created by alexandre on 19/11/18.
  */
@@ -33,9 +33,8 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val id : String = arguments?.getString("id") ?: ""
+        val id: String = arguments?.getString("id") ?: ""
         val film = FilmsRepo.findFilmById(id)
-                //TODO: fix this
 
         film?.let {
             with(film) {
@@ -43,11 +42,18 @@ class DetailsFragment : Fragment() {
                 labelOverview.text = overview
                 labelGenre.text = genre
                 labelRelease.text = release
+                labelVotes.text = voteRating.toString()
+
+                Picasso.get()
+                        .load(getPosterURL())
+                        .placeholder(R.drawable.placeholder)
+                        .error(R.drawable.placeholder)
+                        .into(imgPoster)
             }
         }
 
         btnAdd.setOnClickListener {
-            Toast.makeText(context, "Added to list", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Added to list", Toast.LENGTH_SHORT).show()
         }
     }
 }

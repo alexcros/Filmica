@@ -17,6 +17,10 @@ data class Film(
         var overview: String = "",
         var poster: String = ""
 ) {
+    fun getPosterURL(): String {
+        return "$BASE_POSTER_URL$poster"
+    }
+
     companion object {
 
         fun parseFilms(response: JSONObject): MutableList<Film> {
