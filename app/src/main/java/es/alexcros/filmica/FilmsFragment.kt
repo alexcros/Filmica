@@ -59,16 +59,18 @@ class FilmsFragment: Fragment() {
 
         FilmsRepo.discoverFilms(context!!,
                 { films ->
-
                     progress.visibility = View.INVISIBLE
+                    layout_error.visibility = View.INVISIBLE
                     list.visibility = View.VISIBLE
                     adapter.setFilms(films)
 
-                },{error ->
-                error.printStackTrace()
+                },{ error ->
+                    progress.visibility = View.INVISIBLE
+                    layout_error.visibility = View.VISIBLE
+                    list.visibility = View.INVISIBLE
 
-        }
-        )
+                    error.printStackTrace()
+        })
     }
 
     interface OnItemClickListener {
