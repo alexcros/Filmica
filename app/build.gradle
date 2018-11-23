@@ -18,6 +18,7 @@ android {
         lintOptions {
             abortOnError false
         }
+        buildConfigField 'String', 'MovieDBApiKey', MovieDBApiKey
     }
 
     buildTypes {
