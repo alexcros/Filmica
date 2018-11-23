@@ -1,5 +1,6 @@
 package es.alexcros.filmica.view.films
 
+import android.graphics.Bitmap
 import android.support.v4.content.ContextCompat
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.RecyclerView
@@ -54,30 +55,7 @@ class FilmsAdapter(var itemClickListener: ((Film) -> Unit)? = null) :
                         titleGenre.text = value?.genre
                         labelVotes.text = value?.voteRating.toString()
 
-                        val target = SimpleTarget(
-                                successCallback = { bitmap, from ->
-                                    imgPoster.setImageBitmap(bitmap)
-                                    Palette.from(bitmap).generate { palette ->
-                                        val defaultColor = ContextCompat.getColor(itemView.context, R.color.colorPrimary)
-                                        val swatch = palette?.vibrantSwatch ?: palette?.dominantSwatch
-                                        val color = swatch?.rgb ?: defaultColor
-
-                                        container.setBackgroundColor(color)
-                                        containerData.setBackgroundColor(color)
-
-                                    }
-                                }
-                        )
-
-                        imgPoster.tag = target
-
-                        Picasso.get()
-                                .load(value.getPosterURL())
-                                .placeholder(R.drawable.placeholder)
-                                .error(R.drawable.placeholder)
-                                .into(target)
-
-
+                        loadImage()
                     }
                 }
             }
@@ -87,11 +65,35 @@ class FilmsAdapter(var itemClickListener: ((Film) -> Unit)? = null) :
                 film?.let {
                     itemClickListener?.invoke(this.film as Film)
                 }
-
             }
         }
 
+        private fun loadImage() {
+            val target = SimpleTarget(
+                    successCallback = { bitmap, from ->
+                        itemView.imgPoster.setImageBitmap(bitmap)
+                        setColorFrom(bitmap)
+                    }
+            )
+
+            itemView.imgPoster.tag = target
+
+            Picasso.get()
+                    .load(film?.getPosterURL())
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
+                    .into(target)
+        }
+
+        private fun setColorFrom(bitmap: Bitmap) {
+            Palette.from(bitmap).generate { palette ->
+                val defaultColor = ContextCompat.getColor(itemView.context, R.color.colorPrimary)
+                val swatch = palette?.vibrantSwatch ?: palette?.dominantSwatch
+                val color = swatch?.rgb ?: defaultColor
+
+                itemView.container.setBackgroundColor(color)
+                itemView.containerData.setBackgroundColor(color)
+            }
+        }
     }
-
-
 }
