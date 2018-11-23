@@ -1,5 +1,7 @@
 package es.alexcros.filmica.view.films
 
+import android.support.v4.content.ContextCompat
+import android.support.v7.graphics.Palette
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +9,7 @@ import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import es.alexcros.filmica.R
 import es.alexcros.filmica.data.Film
+import es.alexcros.filmica.view.utils.SimpleTarget
 import kotlinx.android.synthetic.main.item_film.view.*
 
 /**
@@ -51,11 +54,30 @@ class FilmsAdapter(var itemClickListener: ((Film) -> Unit)? = null) :
                         titleGenre.text = value?.genre
                         labelVotes.text = value?.voteRating.toString()
 
+                        val target = SimpleTarget(
+                                successCallback = { bitmap, from ->
+                                    imgPoster.setImageBitmap(bitmap)
+                                    Palette.from(bitmap).generate { palette ->
+                                        val defaultColor = ContextCompat.getColor(itemView.context, R.color.colorPrimary)
+                                        val swatch = palette?.vibrantSwatch ?: palette?.dominantSwatch
+                                        val color = swatch?.rgb ?: defaultColor
+
+                                        container.setBackgroundColor(color)
+                                        containerData.setBackgroundColor(color)
+
+                                    }
+                                }
+                        )
+
+                        imgPoster.tag = target
+
                         Picasso.get()
                                 .load(value.getPosterURL())
                                 .placeholder(R.drawable.placeholder)
                                 .error(R.drawable.placeholder)
-                                .into(imgPoster)
+                                .into(target)
+
+
                     }
                 }
             }
