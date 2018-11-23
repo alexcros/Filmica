@@ -11,7 +11,7 @@
         android:layout_height="196dp"
         android:background="@color/colorPrimaryDark">
 
-        <ImageView
+        <es.alexcros.filmica.view.utils.FadeImageView
             android:id="@+id/imgPoster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
