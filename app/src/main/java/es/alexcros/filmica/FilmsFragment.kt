@@ -51,12 +51,13 @@ class FilmsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         list.adapter = adapter
+        btnRetry.setOnClickListener { reload() }
+
     }
 
-    override fun onResume() {
-        super.onResume()
-
+    fun reload() {
         FilmsRepo.discoverFilms(context!!,
                 { films ->
                     progress.visibility = View.INVISIBLE
@@ -65,12 +66,20 @@ class FilmsFragment: Fragment() {
                     adapter.setFilms(films)
 
                 },{ error ->
-                    progress.visibility = View.INVISIBLE
-                    layout_error.visibility = View.VISIBLE
-                    list.visibility = View.INVISIBLE
+            progress.visibility = View.INVISIBLE
+            layout_error.visibility = View.VISIBLE
+            list.visibility = View.INVISIBLE
 
-                    error.printStackTrace()
+            error.printStackTrace()
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        this.reload()
+
+
     }
 
     interface OnItemClickListener {

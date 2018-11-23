@@ -60,18 +60,17 @@ object FilmsRepo {
             callbackError: (VolleyError) -> Unit,
             context: Context
     ) {
-
         val url = ApiRoutes.discoverUrl()
-        val request = JsonObjectRequest(Request.Method.GET, url, null, { response ->
-            val newFilms = Film.parseFilms(response)
-            this.films.addAll(parseFilms(newFilms))
-            callbackSuccess.invoke(this.films)
+        val request = JsonObjectRequest(Request.Method.GET, url, null,
+                { response ->
+                    val newFilms = Film.parseFilms(response)
+                    this.films.addAll(newFilms)
+                    callbackSuccess.invoke(this.films)
+                },
+                { error ->
+                    callbackError.invoke(error)
+                })
 
-        }, { error ->
-            error.printStackTrace()
-        })
-
-        // cue
         Volley.newRequestQueue(context)
                 .add(request)
     }
