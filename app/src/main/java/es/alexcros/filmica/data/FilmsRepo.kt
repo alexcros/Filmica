@@ -1,11 +1,10 @@
-package es.alexcros.filmica
+package es.alexcros.filmica.data
 
 import android.content.Context
 import com.android.volley.Request
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import es.alexcros.filmica.Film.Companion.parseFilms
 
 /**
  * Created by alexandre on 13/11/18.
@@ -46,11 +45,11 @@ object FilmsRepo {
                       callbackSuccess: ((MutableList<Film>) -> Unit),
                       callbackError: ((VolleyError) -> Unit)) {
 
-        if (this.films.isEmpty()) {
+        if (films.isEmpty()) {
             //requestDiscoverFilms(callbackSuccess, context)
-            requestDiscoverFilms(callbackSuccess,callbackError,context)
+            requestDiscoverFilms(callbackSuccess, callbackError, context)
         } else {
-            callbackSuccess.invoke(this.films)
+            callbackSuccess.invoke(films)
         }
 
     }
@@ -64,8 +63,8 @@ object FilmsRepo {
         val request = JsonObjectRequest(Request.Method.GET, url, null,
                 { response ->
                     val newFilms = Film.parseFilms(response)
-                    this.films.addAll(newFilms)
-                    callbackSuccess.invoke(this.films)
+                    films.addAll(newFilms)
+                    callbackSuccess.invoke(films)
                 },
                 { error ->
                     callbackError.invoke(error)

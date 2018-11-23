@@ -1,4 +1,4 @@
-package es.alexcros.filmica
+package es.alexcros.filmica.data
 
 import org.json.JSONArray
 import org.json.JSONObject

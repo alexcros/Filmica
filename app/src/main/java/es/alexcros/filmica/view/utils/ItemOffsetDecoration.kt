@@ -1,4 +1,4 @@
-package es.alexcros.filmica
+package es.alexcros.filmica.view.utils
 
 import android.graphics.Rect
 import android.support.annotation.DimenRes

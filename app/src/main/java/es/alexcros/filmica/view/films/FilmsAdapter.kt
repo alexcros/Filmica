@@ -1,9 +1,11 @@
-package es.alexcros.filmica
+package es.alexcros.filmica.view.films
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import es.alexcros.filmica.R
+import es.alexcros.filmica.data.Film
 import kotlinx.android.synthetic.main.item_film.view.*
 
 /**

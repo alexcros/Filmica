@@ -1,6 +1,7 @@
-package es.alexcros.filmica
+package es.alexcros.filmica.data
 
 import android.net.Uri
+import es.alexcros.filmica.BuildConfig
 
 /**
  * Created by alexandre on 20/11/18.

@@ -1,4 +1,4 @@
-package es.alexcros.filmica
+package es.alexcros.filmica.data
 
 /**
  * Created by alexandre on 20/11/18.

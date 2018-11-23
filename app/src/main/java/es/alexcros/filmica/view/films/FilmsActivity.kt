@@ -1,8 +1,12 @@
-package es.alexcros.filmica
+package es.alexcros.filmica.view.films
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import es.alexcros.filmica.R
+import es.alexcros.filmica.data.Film
+import es.alexcros.filmica.view.details.DetailsActivity
+import es.alexcros.filmica.view.details.DetailsFragment
 import kotlinx.android.synthetic.main.activity_films.*
 
 /**

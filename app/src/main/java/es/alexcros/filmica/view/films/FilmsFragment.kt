@@ -1,4 +1,4 @@
-package es.alexcros.filmica
+package es.alexcros.filmica.view.films
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import es.alexcros.filmica.R
+import es.alexcros.filmica.data.Film
+import es.alexcros.filmica.data.FilmsRepo
+import es.alexcros.filmica.view.utils.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.fragment_films.*
 import kotlinx.android.synthetic.main.layout_error.*
 
