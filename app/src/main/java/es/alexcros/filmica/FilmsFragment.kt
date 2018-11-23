@@ -53,24 +53,24 @@ class FilmsFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         list.adapter = adapter
-        btnRetry.setOnClickListener { reload() }
+        btnRetry?.setOnClickListener { reload() }
 
     }
 
     fun reload() {
         FilmsRepo.discoverFilms(context!!,
                 { films ->
-                    progress.visibility = View.INVISIBLE
-                    layout_error.visibility = View.INVISIBLE
+                    progress?.visibility = View.INVISIBLE
+                    layout_error?.visibility = View.INVISIBLE
                     list.visibility = View.VISIBLE
                     adapter.setFilms(films)
 
                 },{ error ->
-            progress.visibility = View.INVISIBLE
-            layout_error.visibility = View.VISIBLE
-            list.visibility = View.INVISIBLE
+                    progress?.visibility = View.INVISIBLE
+                    layout_error?.visibility = View.VISIBLE
+                    list.visibility = View.INVISIBLE
 
-            error.printStackTrace()
+                    error.printStackTrace()
         })
     }
 
