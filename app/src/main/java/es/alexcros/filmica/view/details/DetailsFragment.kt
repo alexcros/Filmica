@@ -17,7 +17,6 @@ import es.alexcros.filmica.data.Film
 import es.alexcros.filmica.data.FilmsRepo
 import es.alexcros.filmica.view.utils.SimpleTarget
 import kotlinx.android.synthetic.main.fragment_details.* // avoid findViewById repeat
-import kotlinx.android.synthetic.main.item_film.view.*
 
 /**
  * Created by alexandre on 19/11/18.
