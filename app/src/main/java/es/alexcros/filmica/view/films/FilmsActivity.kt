@@ -2,6 +2,7 @@ package es.alexcros.filmica.view.films
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import es.alexcros.filmica.R
@@ -10,7 +11,9 @@ import es.alexcros.filmica.view.details.DetailsActivity
 import es.alexcros.filmica.view.details.DetailsFragment
 import es.alexcros.filmica.view.watchlist.WatchlistFragment
 import kotlinx.android.synthetic.main.activity_films.*
-import java.nio.file.WatchEvent
+
+const val TAG_FILMS = "films"
+const val TAG_WATCHLIST = "watchlist"
 
 /**
  * Created by alexandre on 13/11/18.
@@ -19,23 +22,17 @@ class FilmsActivity : AppCompatActivity(), FilmsFragment.OnItemClickListener {
 
     private lateinit var filmsFragment: FilmsFragment
     private lateinit var watchlistFragment: WatchlistFragment
-    private lateinit var activeFragment: FilmsFragment
+    private lateinit var activeFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_films)
 
         if (savedInstanceState == null) {
-            val filmsFragment = FilmsFragment()
-            val watchlistFragment = WatchlistFragment()
-
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.container_list, filmsFragment)
-                    .add(R.id.container_list, watchlistFragment)
-                    .hide(watchlistFragment)
-                    .commit()
-
-            activeFragment = filmsFragment
+            setupFragments()
+        } else {
+            var active = savedInstanceState.getString("active", TAG_FILMS)
+            restoreFragments(active)
         }
 
         navigation?.setOnNavigationItemSelectedListener { item ->
@@ -50,6 +47,35 @@ class FilmsActivity : AppCompatActivity(), FilmsFragment.OnItemClickListener {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+
+        outState.putString("active", activeFragment.tag)
+    }
+
+    private fun setupFragments() {
+        filmsFragment = FilmsFragment()
+        watchlistFragment = WatchlistFragment()
+
+        supportFragmentManager.beginTransaction()
+                .add(R.id.container_list, filmsFragment, TAG_FILMS)
+                .add(R.id.container_list, watchlistFragment, TAG_WATCHLIST)
+                .hide(watchlistFragment)
+                .commit()
+
+        activeFragment = filmsFragment
+    }
+
+    private fun restoreFragments(tag: String) {
+        filmsFragment = supportFragmentManager.findFragmentByTag(TAG_FILMS) as FilmsFragment
+        watchlistFragment = supportFragmentManager.findFragmentByTag(TAG_WATCHLIST) as WatchlistFragment
+
+        activeFragment = if (tag == TAG_WATCHLIST)
+                            watchlistFragment
+                        else
+                            filmsFragment
+    }
+
     fun showMainFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
                 .hide(activeFragment)
@@ -61,7 +87,6 @@ class FilmsActivity : AppCompatActivity(), FilmsFragment.OnItemClickListener {
 
     override fun onItemClicked(film: Film) {
         showDetails(film.id)
-
     }
 
     fun showDetails(id: String) {
