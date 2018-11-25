@@ -12,7 +12,11 @@ import kotlinx.android.synthetic.main.activity_films.*
 /**
  * Created by alexandre on 13/11/18.
  */
-class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
+class FilmsActivity : AppCompatActivity(), FilmsFragment.OnItemClickListener {
+
+    private lateinit var filmsFragment: FilmsFragment
+    private lateinit var watchlistFragment: FilmsFragment
+    private lateinit var activeFragment: FilmsFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,21 @@ class FilmsActivity: AppCompatActivity(), FilmsFragment.OnItemClickListener {
                     .add(R.id.container_list, filmsFragment)
                     .commit()
         }
+
+        navigation?.setOnNavigationItemSelectedListener { item ->
+            val id = item.itemId
+
+            when (id) {
+                R.id.action_discover -> showMainFragment(filmsFragment)
+                R.id.action_watchlist -> showMainFragment(watchlistFragment)
+            }
+
+            true
+        }
+    }
+
+    fun showMainFragment() {
+
     }
 
     override fun onItemClicked(film: Film) {
