@@ -31,8 +31,8 @@ class FilmsActivity : AppCompatActivity(), FilmsFragment.OnItemClickListener {
         if (savedInstanceState == null) {
             setupFragments()
         } else {
-            var active = savedInstanceState.getString("active", TAG_FILMS)
-            restoreFragments(active)
+            var activeTag = savedInstanceState.getString("active", TAG_FILMS)
+            restoreFragments(activeTag)
         }
 
         navigation?.setOnNavigationItemSelectedListener { item ->
@@ -47,8 +47,8 @@ class FilmsActivity : AppCompatActivity(), FilmsFragment.OnItemClickListener {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-        super.onSaveInstanceState(outState, outPersistentState)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
 
         outState.putString("active", activeFragment.tag)
     }
