@@ -94,7 +94,6 @@ class FilmsActivity : AppCompatActivity(), FilmsFragment.OnItemClickListener {
             showDetailsFragment(id)
         else
             launchDetailsActivity(id)
-
     }
 
     private fun isTablet() = this.containerDetails != null
